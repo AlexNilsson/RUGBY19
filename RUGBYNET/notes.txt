@@ -1,0 +1,30 @@
+playersA vs playersB
+
+playersA = 1hot vector of all players in that team
+// same for playersB
+
+
+// prediction of that game
+predict(playersA, playersB) -> (scoreA, scoreB)
+
+
+// run group predictions
+x20
+
+gen_total_scores() -> sorted tuple list of team: score
+
+// predict "fav team"
+predict(total_scores) -> "favTeam"
+
+top 8 ->
+run quarters
+run semi
+run third'
+run final
+
+
+calculateLoss()
+
+
+
+// how to train hedging?
