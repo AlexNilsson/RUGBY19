@@ -14,10 +14,16 @@ class PlotLosses(Callback):
     plt.ion()
     plt.show()
 
-  def on_epoch_end(self, epoch, logs={}):
+    self.last_val_loss = 1000
 
+  def on_epoch_end(self, epoch, logs={}):
     self.loss.append(logs.get('loss'))
-    self.val_loss.append(logs.get('val_loss'))
+    print(logs.get('val_loss'))
+    if (logs.get('val_loss')):
+      self.val_loss.append(logs.get('val_loss'))
+      self.last_val_loss = logs.get('val_loss')
+    else:
+      self.val_loss.append(self.last_val_loss)
 
     x = [i+1 for i in range(len(self.loss))]
 

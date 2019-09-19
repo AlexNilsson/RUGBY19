@@ -26,7 +26,7 @@ def keep_entries(list_of_dicts, keys_to_keep):
 def group_by_key(list_of_dicts, key):
   out = {}
   for k, values in groupby(list_of_dicts, key=lambda x:x[key]):
-    out[k] = [list(x.values())[1:] for x in values]
+    out[k] = [list(x.values())[:-1] for x in values] # assumes the key is last
   return out
 
 def unique_members_from_columns(list_of_dicts, keys):
