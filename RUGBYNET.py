@@ -25,7 +25,9 @@ class RUGBYNET():
     self.model.compile(loss=self.loss_function, optimizer=self.optimizer) #mean_squared_error
 
   def loss_function(self, y_real, y_pred):
-    mse = K.mean(K.square(y_pred - y_real), axis=-1)
+    # L = (mse scores) + D * (mse diff) + correct_winner_regularization
+    D = 0.5
+    mse = K.mean(K.square(y_pred - y_real), axis=-1) + D * K.mean(K.square(K.abs(y_pred[1] - y_pred[0]) - K.abs(y_real[1] - y_real[0])), axis=-1)
 
     correct_winner_regularization = 0 if K.sign(y_pred[0]-y_pred[1]) == K.sign(y_real[0]-y_real[1]) else C.WRONG_WINNER_PENALTY
     loss = mse + correct_winner_regularization

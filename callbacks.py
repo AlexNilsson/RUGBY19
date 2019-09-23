@@ -34,5 +34,5 @@ class PlotLosses(Callback):
     plt.draw()
     plt.pause(0.001)
 
-  def on_batch_end(self, batch, logs={}):
-    self.on_epoch_end(batch, logs)
+  #def on_batch_end(self, batch, logs={}):
+    #self.on_epoch_end(batch, logs)
